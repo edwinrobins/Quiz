@@ -1,1 +1,138 @@
+PROJECT: Smart Quiz App
+This Project has:
+1.has menus
+2.tracks score
+3.limits attempts
+4.gives answers after 3 tries
+5.saves high score
 
+What we are building?
+When the program runs the menu will look like this:
+|----------------------|
+| === C# SMART QUIZ ===|
+|    1. Start Quiz     |
+|  2. View High Score  |
+|       3. Exit        |
+|----------------------|
+When you start:
+the console will show the menu above
+You will have to write either 1,2 or 3
+
+1.if you choose one then you will start the quiz questions
+2.if you choose two then you will see your high score (it resets each time you close the console)
+3.if you choose three then the console will close
+
+NUMBER 1...
+you will start the quiz questions
+after 3 fails → shows answer
+keeps score
+shows final score
+then if you press enter the code will start again
+
+NUMBER 2...
+it will show your high score
+if you closed the tab and havent tried the test since, then the code will show 0
+then if you press enter the code will start again
+
+NUMBER 3...
+it will just close the console.
+
+Full working code (copy,run and test in your C# test server)
+---------------------------------------------------------------------------------
+|using System;                                                                  |
+|                                                                               |
+|using System.Collections.Generic;                                              |
+|                                                                               |
+|                                                                               |
+|class Program                                                                  |
+|{                                                                              |
+|    static void Main()                                                         |
+|    {                                                                          |
+|        int highScore = 0;                                                     |
+|                                                                               |
+|        while (true)                                                           |
+|        {                                                                      |
+|            Console.Clear();                                                   |
+|            Console.WriteLine("=== C# SMART QUIZ ===");                        |
+|            Console.WriteLine("1. Start Quiz");                                |
+|            Console.WriteLine("2. View High Score");                           |
+|            Console.WriteLine("3. Exit");                                      |
+|            Console.Write("Choose: ");                                         |
+|                                                                               |
+|            string choice = Console.ReadLine();                                |
+|                                                                               |
+|            if (choice == "1")                                                 |
+|            {                                                                  |
+|                int score = StartQuiz();                                       |
+|                Console.WriteLine("Your Score: " + score);                     |
+|                                                                               |
+|                if (score > highScore)                                         |
+|                {                                                              |
+|                    highScore = score;                                         |
+|                    Console.WriteLine("New High Score!");                      |
+|                }                                                              |
+|                                                                               |
+|                Console.WriteLine("Press Enter...");                           |
+|                Console.ReadLine();                                            |
+|            }                                                                  |
+|            else if (choice == "2")                                            |
+|            {                                                                  |
+|                Console.WriteLine("High Score: " + highScore);                 |
+|                Console.WriteLine("Press Enter...");                           |
+|                Console.ReadLine();                                            |
+|            }                                                                  |
+|            else if (choice == "3")                                            |
+|            {                                                                  |
+|                break;                                                         |
+|            }                                                                  |
+|        }                                                                      |
+|    }                                                                          |
+|                                                                               |
+|    static int StartQuiz()                                                     |
+|    {                                                                          |
+|        int score = 0;                                                         |
+|                                                                               |
+|        var questions = new Dictionary<string, string>()                       |
+|        {                                                                      |
+|            { "What keyword creates a class?", "class" },                      |
+|            { "Which type stores true/false?", "bool" },                       |
+|            { "Which loop repeats while true?", "while" }                      |
+|        };                                                                     |
+|                                                                               |
+|        foreach (var q in questions)                                           |
+|       {                                                                       |
+|          int attempts = 0;                                                    |
+|         bool correct = false;                                                 |
+|                                                                               |
+|            while (attempts < 3 && !correct)                                   |
+|            {                                                                  |
+|                Console.WriteLine(q.Key);                                      |
+|                Console.Write("Answer: ");                                     |
+|                string answer = Console.ReadLine().ToLower();                  |
+|                                                                               |
+|                if (answer == q.Value)                                         |
+|                {                                                              |
+|                    Console.WriteLine("Correct!");                             |
+|                    score++;                                                   |
+|                    correct = true;                                            |
+|                }                                                              |
+|                else                                                           |
+|                {                                                              |
+|                    attempts++;                                                |
+|                    Console.WriteLine("Wrong");                                |
+|                                                                               |
+|                    if (attempts == 3)                                         |
+|                    {                                                          |
+|                        Console.WriteLine("Answer was: " + q.Value);           |
+|                    }                                                          |
+|                }                                                              |
+|            }                                                                  |
+|                                                                               |
+|            Console.WriteLine();                                               |
+|        }                                                                      |
+|                                                                               |
+|        return score;                                                          |
+|    }                                                                          |    
+|}                                                                              |
+---------------------------------------------------------------------------------
+(don't copy the box that i put around the code)
